@@ -2,7 +2,7 @@
 
 const { ImapFlow } = require('imapflow')
 const MailComposer = require('nodemailer/lib/mail-composer')
-
+const path = require('path')
 
 module.exports = async function (fastify, opts) {
   fastify.get('/', async function (request, reply) {
@@ -22,20 +22,27 @@ module.exports = async function (fastify, opts) {
     // list all folders
     // console.log(await client.list())
 
+    const attachments = []
+    attachments.push({
+      filename: 'Google.pdf',
+      path: path.join(__dirname, './../../', 'assets', 'Google.pdf')
+    })
+
     // email message fields
     const message = {
       from: `<${process.env.EMAIL_USERNAME}>`,
-      to: 'someone@somewhere.com',
+      to: process.env.EMAIL_USERNAME,
+      bcc: 'botura@gmail.com',
       subject: 'Hello world',
       text: 'Hello world',
-      html: '<b>Hello world</b>'
+      html: '<b>Hello world</b>',
+      attachments
     }
 
-    // Create a new MailComposer instance
-    const mail = new MailComposer(message)
-
     // generate the message
-    const content = await mail.compile().build()
+    const mail = new MailComposer(message).compile()
+    mail.keepBcc = true
+    const content = await mail.build()
 
     // add the message to gmail draft folder
     await client.append(process.env.EMAIL_FOLDER_NAME, content)
