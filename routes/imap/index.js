@@ -23,10 +23,16 @@ module.exports = async function (fastify, opts) {
     // console.log(await client.list())
 
     const attachments = []
-    attachments.push({
-      filename: 'Google.pdf',
-      path: path.join(__dirname, './../../', 'assets', 'Google.pdf')
-    })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 2.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 3.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 4.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 5.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 6.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 7.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 8.pdf') })
+    attachments.push({ path: path.join(__dirname, './../../', 'assets', 'Google copy 9.pdf') })
 
     // email message fields
     const message = {
@@ -49,6 +55,6 @@ module.exports = async function (fastify, opts) {
 
     // logout
     await client.logout()
-    return 'ok'
+    return { emailSent: true }
   })
 }
