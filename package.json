@@ -1,0 +1,29 @@
+{
+  "name": "jwt",
+  "version": "1.0.0",
+  "description": "This project was bootstrapped with Fastify-CLI.",
+  "main": "app.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "tap \"test/**/*.test.js\"",
+    "start": "fastify start -l info app.js",
+    "dev": "fastify start -w -l info -P app.js",
+    "lint": "standard --fix"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@fastify/autoload": "^5.0.0",
+    "fastify": "^4.0.0",
+    "fastify-cli": "^5.7.0",
+    "fastify-plugin": "^4.4.0",
+    "imapflow": "^1.0.120"
+  },
+  "devDependencies": {
+    "standard": "*",
+    "tap": "^16.3.2"
+  }
+}
